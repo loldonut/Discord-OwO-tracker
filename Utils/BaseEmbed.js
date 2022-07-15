@@ -3,7 +3,7 @@ const config = require('../config.json')
 
 function BaseEmbed(i) {
   if (!i) {
-    throw Error("'interaction' must be passed down as param! (BaseEmbed)");
+    throw new Error("'interaction' must be passed down as param! (BaseEmbed)");
   }
   return new MessageEmbed()
     .setAuthor({

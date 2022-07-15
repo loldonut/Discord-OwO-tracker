@@ -1,6 +1,5 @@
 const Profile = require('../models/OwO');
 module.exports = {
-
   createProfile: async function createProfile(user, message) {
     const profile = await Profile.find({ userId: user.id });
     if (!profile.length) {

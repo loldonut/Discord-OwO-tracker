@@ -15,15 +15,16 @@ module.exports = {
           { name: 'Weekly', value: 'weekly' },
           { name: 'Monthly', value: 'monthly' },
           { name: 'Total', value: 'total' },
-        )),
+        )
+    ),
+
   async execute(i) {
     const type = i.options.getString('value');
     if (!type) return;
 
     if (type.toLowerCase() == 'daily') {
-
-      let embed = BaseEmbed(i)
-      let lb = await Profile.find({ guildId: i.guild.id }).sort({ daily: -1 }).limit(10)
+      let embed = BaseEmbed(i);
+      let lb = await Profile.find({ guildId: i.guild.id }).sort({ daily: -1 }).limit(10);
       for (let a = 0; a < lb.length; a++) {
         if (lb[a].daily) {
           let puser = await i.client.users.fetch(`${lb[a].userId}`);
@@ -32,30 +33,28 @@ module.exports = {
         }
       }
       embed.setDescription(`**Daily OwO Count LB**`)
-      embed.setTimestamp()
+        .setTimestamp();
 
       await i.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
-
     } else if (type.toLowerCase() == 'weekly') {
-
       let embed = BaseEmbed(i)
-      let lb = await Profile.find({ guildId: i.guild.id }).sort({ weekly: -1 }).limit(10)
+      let lb = await Profile.find({ guildId: i.guild.id }).sort({ weekly: -1 }).limit(10);
+
       for (let a = 0; a < lb.length; a++) {
         if (lb[a].weekly) {
           let puser = await i.client.users.fetch(`${lb[a].userId}`);
 
-          embed.addField(`#${a + 1} **${puser.username}**`, `${lb[a].weekly} OwOs`)
+          embed.addField(`#${a + 1} **${puser.username}**`, `${lb[a].weekly} OwOs`);
         }
       }
       embed.setDescription(`**Weekly OwO Count LB**`)
-      embed.setTimestamp()
+        .setTimestamp();
 
       await i.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
-
     } else if (type.toLowerCase() == 'monthly') {
-
       let embed = BaseEmbed(i)
-      let lb = await Profile.find({ guildId: i.guild.id }).sort({ monthly: -1 }).limit(10)
+      let lb = await Profile.find({ guildId: i.guild.id }).sort({ monthly: -1 }).limit(10);
+
       for (let a = 0; a < lb.length; a++) {
         if (lb[a].monthly) {
           let puser = await i.client.users.fetch(`${lb[a].userId}`);
@@ -64,14 +63,13 @@ module.exports = {
         }
       }
       embed.setDescription(`**Monthly OwO Count LB**`)
-      embed.setTimestamp()
+        .setTimestamp();
 
       await i.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
-
     } else if (type.toLowerCase() == 'total') {
+      let embed = BaseEmbed(i);
+      let lb = await Profile.find({ guildId: i.guild.id }).sort({ total: -1 }).limit(10);
 
-      let embed = BaseEmbed(i)
-      let lb = await Profile.find({ guildId: i.guild.id }).sort({ total: -1 }).limit(10)
       for (let a = 0; a < lb.length; a++) {
         if (lb[a].total) {
           let puser = await i.client.users.fetch(`${lb[a].userId}`);
@@ -80,10 +78,9 @@ module.exports = {
         }
       }
       embed.setDescription(`**Total OwO Count LB**`)
-      embed.setTimestamp()
+        .setTimestamp();
 
       await i.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
-
     }
   },
 };
